@@ -46,7 +46,7 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "check": "npm run typecheck",
-    "test": "node --import tsx --test tests/**/*.test.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
     "verify": "npm run typecheck && npm test && npm run build",
     "pack:dry-run": "npm --cache .npm-cache pack --dry-run",
     "prepack": "npm run clean && npm run verify"
