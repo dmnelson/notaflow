@@ -64,6 +64,19 @@ npm link
 `npm link` makes the `notaflow` command available in the current Node
 environment. Commands can also be run as `node dist/cli.js ...` after building.
 
+## Package Status
+
+The package is intentionally marked as private and unlicensed while the project
+is used privately:
+
+- `private: true` prevents accidental npm publication.
+- `license: UNLICENSED` avoids implying a public license before one is chosen.
+- `npm run pack:dry-run` builds and prints the package contents without
+  publishing.
+
+Before making the repository public or publishing to npm, follow
+[`docs/release-checklist.md`](docs/release-checklist.md).
+
 ## Standalone Draft
 
 Use `new` when there is no supported invoice source, or when another tool will
@@ -228,9 +241,13 @@ src/        CLI, invoice importers, draft model, DPS XML, validation, artifacts
 schema/     versioned JSON Schema
 tests/      Node test runner coverage
 examples/   fake simple-invoice source and completed NFS-e draft
+docs/       release and project maintenance notes
 workspace/  ignored private drafts and generated files
 evidence/   ignored supporting files
 ```
 
 See [`examples/invoice.yml`](examples/invoice.yml) and
 [`examples/nfse-draft.yml`](examples/nfse-draft.yml).
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SECURITY.md`](SECURITY.md), and
+[`CHANGELOG.md`](CHANGELOG.md) for repository maintenance conventions.

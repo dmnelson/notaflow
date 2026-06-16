@@ -2,20 +2,54 @@
   "name": "notaflow",
   "version": "0.1.0",
   "description": "Local CLI for preparing Brazilian NFS-e draft artifacts.",
+  "private": true,
+  "license": "UNLICENSED",
   "type": "module",
+  "packageManager": "npm@10.9.3",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dmnelson/notaflow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dmnelson/notaflow/issues"
+  },
+  "homepage": "https://github.com/dmnelson/notaflow#readme",
+  "keywords": [
+    "nfse",
+    "nfs-e",
+    "dps",
+    "brazil",
+    "nota-fiscal",
+    "cli"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schema/nfse-draft.v1.schema.json": "./schema/nfse-draft.v1.schema.json",
+    "./package.json": "./package.json"
+  },
   "bin": {
     "notaflow": "./dist/cli.js"
   },
   "files": [
     "dist",
     "schema",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsc -p tsconfig.json",
-    "check": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "check": "npm run typecheck",
     "test": "node --import tsx --test tests/**/*.test.ts",
-    "verify": "npm run check && npm test && npm run build"
+    "verify": "npm run typecheck && npm test && npm run build",
+    "pack:dry-run": "npm --cache .npm-cache pack --dry-run",
+    "prepack": "npm run clean && npm run verify"
   },
   "engines": {
     "node": ">=20"

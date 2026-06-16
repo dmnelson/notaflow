@@ -1,5 +1,6 @@
 node_modules/
 dist/
+.npm-cache/
 coverage/
 .DS_Store
 .env
@@ -9,10 +10,10 @@ coverage/
 workspace/
 evidence/
 *.pdf
-*-portal.html
-*-checklist.md
-*-dps.xml
-dps.xml
+/*-portal.html
+/*-checklist.md
+/*-dps.xml
+/dps.xml
 
 # Keep intentional public examples.
 !examples/
