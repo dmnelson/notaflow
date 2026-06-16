@@ -1,0 +1,103 @@
+schema_version: nfse_draft.v1
+source_invoice:
+  format: simple-invoice.v1
+  file: invoice.yml
+  invoice_number: INV-202606
+  kind: standard
+  issue_date: "2026-06-30"
+  period:
+    start: "2026-06-01"
+    end: "2026-06-30"
+  description_en:
+    - R&D and software engineering services
+dps:
+  environment: "2"
+  issued_at: "2026-06-30T12:00:00-03:00"
+  application_version: notaflow/0.1.0
+  series: "70000"
+  number: "1"
+  competency_date: "2026-06-30"
+  issuer_type: "1"
+  city_code: "3106200"
+provider:
+  cnpj: "12345678000195"
+  cpf: null
+  municipal_registration: "12345678901"
+  name: Example Software Ltda
+  tax_regime:
+    simples_nacional_status: "3"
+    simples_nacional_assessment: "1"
+    special_tax_regime: "0"
+recipient:
+  name: Example Client Ltd
+  address_lines:
+    - 9 Example Park
+    - Wallingford, England
+  address:
+    street: Example Road
+    number: "9"
+    complement: null
+    neighborhood: Example Park
+    city: Wallingford
+    state_province_region: Oxfordshire
+    city_code: null
+    postal_code: OX10 9SJ
+  country_code: GB
+  country_name_pt: Reino Unido
+  foreign_tax_id: GB123456789
+  non_nif_reason: null
+amounts:
+  original_currency: USD
+  original_amount: 7000
+  exchange_rate_to_brl: 7
+  brl_amount: 49000
+payment:
+  date: "2026-06-10"
+  exchange_contract_number: EXAMPLE-123
+service:
+  description_pt: Prestação de serviços de desenvolvimento de software referente a junho de 2026.
+  description_source: manual
+  municipal_service_code: "001"
+  national_service_code: "010101"
+  nbs_code: "115080000"
+  location_city_code: "3106200"
+  location_country_code: null
+  iss_withheld: false
+  notes: Example only; replace fiscal codes with reviewed values.
+foreign_trade:
+  service_mode: "4"
+  relationship: "0"
+  currency_code: "220"
+  provider_support: "01"
+  customer_support: "01"
+  temporary_goods_movement: "1"
+  import_declaration_number: null
+  export_registration_number: null
+  mdic_registration: "0"
+tax:
+  municipal_taxation: "3"
+  iss_withholding: "1"
+  result_country_code: GB
+  pis_cofins_cst: "00"
+  total_tax:
+    disclosure_indicator: null
+    simples_nacional_rate: 6
+evidence:
+  - type: payment_confirmation
+    source: bank_portal
+    reference: Example payment confirmation
+    date: "2026-06-10"
+    local_file: evidence/example-payment-confirmation.pdf
+    extracted_with: ChatGPT/Codex assisted extraction
+    notes: Example metadata only.
+outputs:
+  portal_html: workspace/INV-202606-portal.html
+  checklist_md: workspace/INV-202606-checklist.md
+  dps_xml: workspace/INV-202606-dps.xml
+audit:
+  created_at: "2026-06-11T12:00:00.000Z"
+  updated_at: "2026-06-11T12:00:00.000Z"
+  notes:
+    - Source invoice data was copied into this draft; the source invoice was not modified.
+    - Review all fiscal fields before issuing the NFS-e.
+    - The NFS-e BRL amount must come from payment/conversion evidence, not from the invoice issue date.

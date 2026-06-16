@@ -1,0 +1,749 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://notaflow.local/schema/nfse-draft.v1.schema.json",
+  "title": "notaflow NFS-e draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_invoice",
+    "dps",
+    "provider",
+    "recipient",
+    "amounts",
+    "payment",
+    "service",
+    "foreign_trade",
+    "tax",
+    "evidence",
+    "outputs",
+    "audit"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "nfse_draft.v1"
+    },
+    "source_invoice": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/sourceInvoice"
+        }
+      ]
+    },
+    "dps": {
+      "$ref": "#/$defs/dps"
+    },
+    "provider": {
+      "$ref": "#/$defs/provider"
+    },
+    "recipient": {
+      "$ref": "#/$defs/recipient"
+    },
+    "amounts": {
+      "$ref": "#/$defs/amounts"
+    },
+    "payment": {
+      "$ref": "#/$defs/payment"
+    },
+    "service": {
+      "$ref": "#/$defs/service"
+    },
+    "foreign_trade": {
+      "$ref": "#/$defs/foreignTrade"
+    },
+    "tax": {
+      "$ref": "#/$defs/tax"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "outputs": {
+      "$ref": "#/$defs/outputs"
+    },
+    "audit": {
+      "$ref": "#/$defs/audit"
+    }
+  },
+  "$defs": {
+    "nullableString": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "nullableDate": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "format": "date"
+        }
+      ]
+    },
+    "nullableNumber": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "nullableEnvironment": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "enum": [
+            "1",
+            "2"
+          ]
+        }
+      ]
+    },
+    "nullableIssuerType": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "enum": [
+            "1",
+            "2",
+            "3"
+          ]
+        }
+      ]
+    },
+    "nullableTaxRegime": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "enum": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "9"
+          ]
+        }
+      ]
+    },
+    "nullableDpsCode": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[0-9]+$"
+        }
+      ]
+    },
+    "nullableCountryCode": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        }
+      ]
+    },
+    "nullableDateTime": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "format": "date-time"
+        }
+      ]
+    },
+    "period": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date"
+        },
+        "end": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "dps": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "environment",
+        "issued_at",
+        "application_version",
+        "series",
+        "number",
+        "competency_date",
+        "issuer_type",
+        "city_code"
+      ],
+      "properties": {
+        "environment": {
+          "$ref": "#/$defs/nullableEnvironment"
+        },
+        "issued_at": {
+          "$ref": "#/$defs/nullableDateTime"
+        },
+        "application_version": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "series": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "number": {
+          "$ref": "#/$defs/nullableDpsCode"
+        },
+        "competency_date": {
+          "$ref": "#/$defs/nullableDate"
+        },
+        "issuer_type": {
+          "$ref": "#/$defs/nullableIssuerType"
+        },
+        "city_code": {
+          "$ref": "#/$defs/nullableDpsCode"
+        }
+      }
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cnpj",
+        "cpf",
+        "municipal_registration",
+        "name",
+        "tax_regime"
+      ],
+      "properties": {
+        "cnpj": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "cpf": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "municipal_registration": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "name": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "tax_regime": {
+          "$ref": "#/$defs/providerTaxRegime"
+        }
+      }
+    },
+    "providerTaxRegime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "simples_nacional_status",
+        "simples_nacional_assessment",
+        "special_tax_regime"
+      ],
+      "properties": {
+        "simples_nacional_status": {
+          "$ref": "#/$defs/nullableIssuerType"
+        },
+        "simples_nacional_assessment": {
+          "$ref": "#/$defs/nullableIssuerType"
+        },
+        "special_tax_regime": {
+          "$ref": "#/$defs/nullableTaxRegime"
+        }
+      }
+    },
+    "sourceInvoice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "file",
+        "invoice_number",
+        "kind",
+        "issue_date",
+        "period",
+        "description_en"
+      ],
+      "properties": {
+        "format": {
+          "type": "string",
+          "minLength": 1
+        },
+        "file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "invoice_number": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "issue_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "period": {
+          "$ref": "#/$defs/period"
+        },
+        "description_en": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "recipient": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "address_lines",
+        "address",
+        "country_code",
+        "country_name_pt",
+        "foreign_tax_id",
+        "non_nif_reason"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "address_lines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "address": {
+          "$ref": "#/$defs/recipientAddress"
+        },
+        "country_code": {
+          "$ref": "#/$defs/nullableCountryCode"
+        },
+        "country_name_pt": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "foreign_tax_id": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "non_nif_reason": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "enum": [
+                "0",
+                "1",
+                "2"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "recipientAddress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "street",
+        "number",
+        "complement",
+        "neighborhood",
+        "city",
+        "state_province_region",
+        "city_code",
+        "postal_code"
+      ],
+      "properties": {
+        "street": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "number": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "complement": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "neighborhood": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "city": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "state_province_region": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "city_code": {
+          "$ref": "#/$defs/nullableDpsCode"
+        },
+        "postal_code": {
+          "$ref": "#/$defs/nullableString"
+        }
+      }
+    },
+    "amounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "original_currency",
+        "original_amount",
+        "exchange_rate_to_brl",
+        "brl_amount"
+      ],
+      "properties": {
+        "original_currency": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^[A-Z]{3}$"
+            }
+          ]
+        },
+        "original_amount": {
+          "$ref": "#/$defs/nullableNumber"
+        },
+        "exchange_rate_to_brl": {
+          "$ref": "#/$defs/nullableNumber"
+        },
+        "brl_amount": {
+          "$ref": "#/$defs/nullableNumber"
+        }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "date",
+        "exchange_contract_number"
+      ],
+      "properties": {
+        "date": {
+          "$ref": "#/$defs/nullableDate"
+        },
+        "exchange_contract_number": {
+          "$ref": "#/$defs/nullableString"
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description_pt",
+        "description_source",
+        "municipal_service_code",
+        "national_service_code",
+        "nbs_code",
+        "location_city_code",
+        "location_country_code",
+        "iss_withheld",
+        "notes"
+      ],
+      "properties": {
+        "description_pt": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "description_source": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "enum": [
+                "manual",
+                "template",
+                "assisted"
+              ]
+            }
+          ]
+        },
+        "municipal_service_code": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "national_service_code": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "nbs_code": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "location_city_code": {
+          "$ref": "#/$defs/nullableDpsCode"
+        },
+        "location_country_code": {
+          "$ref": "#/$defs/nullableCountryCode"
+        },
+        "iss_withheld": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "notes": {
+          "$ref": "#/$defs/nullableString"
+        }
+      }
+    },
+    "foreignTrade": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service_mode",
+        "relationship",
+        "currency_code",
+        "provider_support",
+        "customer_support",
+        "temporary_goods_movement",
+        "import_declaration_number",
+        "export_registration_number",
+        "mdic_registration"
+      ],
+      "properties": {
+        "service_mode": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "enum": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          ]
+        },
+        "relationship": {
+          "$ref": "#/$defs/nullableTaxRegime"
+        },
+        "currency_code": {
+          "$ref": "#/$defs/nullableDpsCode"
+        },
+        "provider_support": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "customer_support": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "temporary_goods_movement": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "enum": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
+            }
+          ]
+        },
+        "import_declaration_number": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "export_registration_number": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "mdic_registration": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "enum": [
+                "0",
+                "1"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "tax": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "municipal_taxation",
+        "iss_withholding",
+        "result_country_code",
+        "pis_cofins_cst",
+        "total_tax"
+      ],
+      "properties": {
+        "municipal_taxation": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          ]
+        },
+        "iss_withholding": {
+          "$ref": "#/$defs/nullableIssuerType"
+        },
+        "result_country_code": {
+          "$ref": "#/$defs/nullableCountryCode"
+        },
+        "pis_cofins_cst": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "total_tax": {
+          "$ref": "#/$defs/totalTax"
+        }
+      }
+    },
+    "totalTax": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "disclosure_indicator",
+        "simples_nacional_rate"
+      ],
+      "properties": {
+        "disclosure_indicator": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "const": "0"
+            }
+          ]
+        },
+        "simples_nacional_rate": {
+          "$ref": "#/$defs/nullableNumber"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "source",
+        "reference",
+        "date",
+        "local_file",
+        "extracted_with",
+        "notes"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "reference": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "date": {
+          "$ref": "#/$defs/nullableDate"
+        },
+        "local_file": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "extracted_with": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "notes": {
+          "$ref": "#/$defs/nullableString"
+        }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "portal_html",
+        "checklist_md",
+        "dps_xml"
+      ],
+      "properties": {
+        "portal_html": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "checklist_md": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "dps_xml": {
+          "$ref": "#/$defs/nullableString"
+        }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "created_at",
+        "updated_at",
+        "notes"
+      ],
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

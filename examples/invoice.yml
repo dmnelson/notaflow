@@ -1,0 +1,23 @@
+invoice_number: INV-202606
+kind: standard
+issue_date: "2026-06-30"
+due_date: "2026-07-14"
+period_start: "2026-06-01"
+period_end: "2026-06-30"
+currency: USD
+contractor:
+  name: Example Software Ltd
+  address:
+    - 100 Example Street
+    - Belo Horizonte, MG, Brazil
+client:
+  name: Example Client Ltd
+  address:
+    - 9 Example Park
+    - Wallingford, England
+line_items:
+  - description: R&D and software engineering services
+    quantity: "1"
+    unit_amount: "7000.00"
+expenses: []
+notes: Thank you.

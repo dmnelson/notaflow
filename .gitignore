@@ -1,0 +1,19 @@
+node_modules/
+dist/
+coverage/
+.DS_Store
+.env
+.env.*
+
+# Private working data and generated artifacts.
+workspace/
+evidence/
+*.pdf
+*-portal.html
+*-checklist.md
+*-dps.xml
+dps.xml
+
+# Keep intentional public examples.
+!examples/
+!examples/**
