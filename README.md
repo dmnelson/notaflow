@@ -51,7 +51,7 @@ project or private source format.
 
 ## Requirements
 
-- Node.js 20 or newer
+- Node.js 22.12 or newer
 
 ## Setup
 

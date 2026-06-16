@@ -10,10 +10,6 @@ updates:
         dependency-type: development
       npm-production:
         dependency-type: production
-    ignore:
-      - dependency-name: commander
-        update-types:
-          - version-update:semver-major
 
   - package-ecosystem: github-actions
     directory: /
