@@ -53,7 +53,22 @@ project or private source format.
 
 - Node.js 22.12 or newer
 
-## Setup
+## Install
+
+Use the published CLI:
+
+```bash
+npm install -g notaflow
+notaflow --help
+```
+
+Or run without a global install:
+
+```bash
+npx notaflow --help
+```
+
+## Development
 
 ```bash
 npm install
@@ -66,16 +81,16 @@ environment. Commands can also be run as `node dist/cli.js ...` after building.
 
 ## Package Status
 
-The package is intentionally marked as private and unlicensed while the project
-is used privately:
+`notaflow` is published as both a CLI and an ESM package:
 
-- `private: true` prevents accidental npm publication.
-- `license: UNLICENSED` avoids implying a public license before one is chosen.
-- `npm run pack:dry-run` builds and prints the package contents without
-  publishing.
+- CLI command: `notaflow`
+- Public module entrypoint: `notaflow`
+- Draft schema export:
+  `notaflow/schema/nfse-draft.v1.schema.json`
 
-Before making the repository public or publishing to npm, follow
-[`docs/release-checklist.md`](docs/release-checklist.md).
+The package is MIT licensed. Generated drafts and artifacts may contain
+sensitive business and tax data; keep private working files under ignored
+directories such as `workspace/` or `evidence/`.
 
 ## Standalone Draft
 
@@ -160,6 +175,25 @@ To add another invoice format:
 Runtime plugin loading is not implemented yet. For now, extension means adding a
 small source adapter to the package while keeping the canonical draft and DPS
 generation unchanged.
+
+## Library API
+
+The package is ESM-only. Import the functions you need from `notaflow`:
+
+```ts
+import {
+  generateDpsXml,
+  loadDraft,
+  newStandaloneDraft,
+  renderSummary,
+} from "notaflow";
+```
+
+The exported API is intentionally small: draft creation, invoice import,
+validation, DPS XML generation, artifact rendering, and the public draft types.
+For the file format, see [`docs/nfse-draft-v1.md`](docs/nfse-draft-v1.md) and
+the JSON Schema at
+[`schema/nfse-draft.v1.schema.json`](schema/nfse-draft.v1.schema.json).
 
 ## Complete And Validate
 
@@ -248,6 +282,11 @@ evidence/   ignored supporting files
 
 See [`examples/invoice.yml`](examples/invoice.yml) and
 [`examples/nfse-draft.yml`](examples/nfse-draft.yml).
+
+The npm package ships the generated JavaScript, type declarations, README,
+license, security policy, public draft schema, and selected docs. The checked-in
+national NFS-e XSD mirror is not part of the npm package; see
+[`docs/schema-provenance.md`](docs/schema-provenance.md).
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SECURITY.md`](SECURITY.md), and
 [`CHANGELOG.md`](CHANGELOG.md) for repository maintenance conventions.

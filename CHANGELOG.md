@@ -3,9 +3,25 @@
 All notable changes to this project will be documented in this file.
 
 This project follows the spirit of [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
-and will use semantic versioning if it is published.
+and uses semantic versioning.
 
 ## [Unreleased]
+
+### Changed
+
+- Prepared package metadata and documentation for public npm/GitHub release.
+- Sourced CLI and draft application versions from `package.json`.
+- Limited npm package schema contents to the public `nfse_draft.v1` schema.
+
+### Added
+
+- Public CLI smoke tests.
+- Draft schema reference and schema provenance documentation.
+
+### Fixed
+
+- CLI numeric option validation now reports concise Commander errors instead of
+  Node stack traces.
 
 ## [0.1.0] - 2026-06-16
 

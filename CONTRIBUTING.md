@@ -1,7 +1,6 @@
 # Contributing
 
-`notaflow` is currently private and pre-release. Keep changes small, auditable,
-and covered by focused tests.
+Keep changes small, auditable, and covered by focused tests.
 
 ## Development
 
@@ -30,6 +29,7 @@ npm run pack:dry-run
 - Treat NFS-e fiscal values as reviewed data. Do not infer tax codes, countries,
   service text, or BRL conversion values from unrelated fields.
 - Update `README.md` and `CHANGELOG.md` when changing user-visible behavior.
+- Run `npm run pack:dry-run` before changing package exports or published files.
 
 ## Adding An Invoice Importer
 

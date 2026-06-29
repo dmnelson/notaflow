@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { Command, Option } from "commander";
+import { Command, InvalidArgumentError, Option } from "commander";
 
 import {
   renderChecklistMarkdown,
@@ -16,11 +16,12 @@ import { generateDpsXml } from "./dps.js";
 import { importInvoice, listInvoiceImporters } from "./invoice.js";
 import { writeDraft, writeTextFile } from "./io.js";
 import { validateDraftFile } from "./validation.js";
+import { PACKAGE_VERSION } from "./version.js";
 
 const program = new Command()
   .name("notaflow")
   .description("Prepare auditable NFS-e drafts for manual portal issuance.")
-  .version("0.1.0");
+  .version(PACKAGE_VERSION);
 
 program
   .command("from-invoice")
@@ -275,7 +276,7 @@ function overridesFrom(options: {
 function parseNonNegativeNumber(value: string): number {
   const parsed = Number(value);
   if (!Number.isFinite(parsed) || parsed < 0) {
-    throw new Error(`Invalid non-negative number: ${value}`);
+    throw new InvalidArgumentError(`Invalid non-negative number: ${value}`);
   }
   return parsed;
 }

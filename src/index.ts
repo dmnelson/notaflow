@@ -50,3 +50,4 @@ export type {
   UnknownRecord,
 } from "./types.js";
 export { SCHEMA_VERSION } from "./types.js";
+export { APPLICATION_VERSION, PACKAGE_NAME, PACKAGE_VERSION } from "./version.js";

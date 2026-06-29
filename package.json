@@ -2,13 +2,13 @@
   "name": "notaflow",
   "version": "0.1.0",
   "description": "Local CLI for preparing Brazilian NFS-e draft artifacts.",
-  "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "author": "David Nelson",
   "type": "module",
   "packageManager": "npm@10.9.3",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/dmnelson/notaflow.git"
+    "url": "git+https://github.com/dmnelson/notaflow.git"
   },
   "bugs": {
     "url": "https://github.com/dmnelson/notaflow/issues"
@@ -37,9 +37,13 @@
   },
   "files": [
     "dist",
-    "schema",
+    "schema/nfse-draft.v1.schema.json",
+    "docs/nfse-draft-v1.md",
+    "docs/schema-provenance.md",
     "README.md",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "LICENSE"
   ],
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
@@ -63,7 +67,7 @@
     "yaml": "^2.8.1"
   },
   "devDependencies": {
-    "@types/node": "^25.9.3",
+    "@types/node": "^22.20.0",
     "tsx": "^4.20.5",
     "typescript": "^6.0.3"
   },

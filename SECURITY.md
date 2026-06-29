@@ -5,15 +5,17 @@ sensitive data.
 
 ## Supported Versions
 
-The project is pre-release. Security fixes will be made on `main` until a public
-release process exists.
+Security fixes are made on `main` for the latest published version.
 
 ## Reporting A Vulnerability
 
-While the repository is private, report vulnerabilities through a private GitHub
-issue or GitHub Security Advisory if available. Do not attach real invoices,
-issued NFS-e files, payment confirmations, credentials, or taxpayer identifiers
-unless they are strictly required and have been redacted.
+Report vulnerabilities through a GitHub Security Advisory when available, or by
+opening a GitHub issue that does not include sensitive details. Do not attach
+real invoices, issued NFS-e files, payment confirmations, credentials, or
+taxpayer identifiers unless they are strictly required and have been redacted.
+
+If a report requires private details, ask for a private disclosure channel in
+the initial issue.
 
 ## Data Handling Expectations
 

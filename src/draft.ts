@@ -1,5 +1,6 @@
 import type { ImportedInvoice } from "./invoice.js";
 import { SCHEMA_VERSION, type NfseDraft } from "./types.js";
+import { APPLICATION_VERSION } from "./version.js";
 
 export interface DraftOverrides {
   recipientName?: string;
@@ -22,7 +23,7 @@ export function newStandaloneDraft(
     dps: {
       environment: null,
       issued_at: null,
-      application_version: "notaflow/0.1.0",
+      application_version: APPLICATION_VERSION,
       series: null,
       number: null,
       competency_date: null,
