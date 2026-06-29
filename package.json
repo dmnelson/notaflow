@@ -33,7 +33,7 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "notaflow": "./dist/cli.js"
+    "notaflow": "dist/cli.js"
   },
   "files": [
     "dist",
